@@ -2,8 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { lazy, type ComponentType } from "react";
 
 const modules = import.meta.glob([
-  "../../../components/src/*.tsx",
-  "!../../../components/src/*.webflow.tsx",
+  "../components/*.tsx",
+  "!../components/*.webflow.tsx",
 ]) as Record<string, () => Promise<{ default: ComponentType }>>;
 
 const entries = Object.entries(modules);
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/")({
           </p>
         </header>
         <div className="flex flex-wrap gap-3">
-          {Object.entries(componentRegister).map(([slug, component]) => {
+          {Object.entries(componentRegister).map(([slug, _component]) => {
             return (
               <div key={slug}>
                 <Link

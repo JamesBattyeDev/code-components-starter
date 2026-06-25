@@ -1,4 +1,4 @@
-import { Badge } from "./badge";
+import Badge from "./badge";
 import { props } from "@webflow/data-types";
 import { declareComponent } from "@webflow/react";
 

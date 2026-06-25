@@ -11,22 +11,28 @@ node_modules
 .env.development.local
 .env.test.local
 .env.production.local
+*.local
 
 # Testing
 coverage
 
-# Turbo
-.turbo
+# Build outputs
+dist
+dist-ssr
+build
+out
+
+# TanStack Start / Nitro
+.tanstack
+.nitro
+.output
+.vinxi
+.wrangler
+__unconfig*
+todos.json
 
 # Vercel
 .vercel
-
-# Build Outputs
-.next/
-out/
-build
-dist
-
 
 # Debug
 npm-debug.log*

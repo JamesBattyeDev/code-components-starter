@@ -1,10 +1,10 @@
 import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { lazy, Suspense, type ComponentType } from "react";
-import { ShadowRoot } from "#/shadow-dom.tsx";
+import { ShadowRoot } from "../base-ui/shadow-dom.tsx";
 
 const modules = import.meta.glob([
-  "../../../components/src/*.tsx",
-  "!../../../components/src/*.webflow.tsx",
+  "../components/*.tsx",
+  "!../components/*.webflow.tsx",
 ]) as Record<string, () => Promise<{ default: ComponentType }>>;
 
 const entries = Object.entries(modules);
@@ -33,7 +33,7 @@ export const Route = createFileRoute("/$slug")({
             ← Back
           </Link>
         </div>
-        <div className="p-10">
+        <div className="py-10">
           <ShadowRoot>
             <Component></Component>
           </ShadowRoot>
