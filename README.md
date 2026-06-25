@@ -32,7 +32,7 @@ To deploy your webflow library, adjust the settings in `webflow.json`
 }
 ```
 
-Then run `npx webflow library share` and follow the instructions
+Then run `npm run share` and follow the instructions. The command will run a typecheck before the library runs, so you can catch the errors quicker.
 
 ## Scripts
 

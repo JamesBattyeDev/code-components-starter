@@ -10,7 +10,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "generate-routes": "tsr generate",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "share": "tsc && webflow devlink import"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
