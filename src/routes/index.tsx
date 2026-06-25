@@ -15,6 +15,17 @@ for (const [path, loader] of entries) {
 }
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      {
+        title: "Component Index",
+      },
+      {
+        name: "description",
+        content: "Browse every component exported from the codebase.",
+      },
+    ],
+  }),
   component: () => {
     return (
       <div className="p-15">

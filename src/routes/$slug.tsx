@@ -16,6 +16,17 @@ for (const [path, loader] of entries) {
 }
 
 export const Route = createFileRoute("/$slug")({
+  head: ({ params }) => ({
+    meta: [
+      {
+        title: params.slug.charAt(0).toUpperCase() + params.slug.slice(1),
+      },
+      {
+        name: "description",
+        content: `Preview of the ${params.slug} component, rendered inside the shadow DOM.`,
+      },
+    ],
+  }),
   component: () => {
     const { slug } = Route.useParams();
     const Component = componentRegister[slug];

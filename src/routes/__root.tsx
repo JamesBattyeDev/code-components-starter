@@ -15,13 +15,23 @@ export const Route = createRootRoute({
         content: "width=device-width, initial-scale=1",
       },
       {
-        title: "TanStack Start Starter",
+        title: "Code Components Starter",
+      },
+      {
+        name: "description",
+        content:
+          "A starter for your next Webflow code components project. Preview every exported component on its own page, rendered inside the shadow DOM.",
       },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      {
+        rel: "icon",
+        type: "image/svg+xml",
+        href: "/favicon.svg",
       },
     ],
   }),
