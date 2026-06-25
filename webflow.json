@@ -1,6 +1,7 @@
 {
   "library": {
     "name": "<Your Library Name>",
+    "globals": "./src/globals.ts",
     "components": ["./src/**/*.webflow.@(js|jsx|mjs|ts|tsx)"]
   }
 }
