@@ -1,0 +1,26 @@
+      <div className="p-15">
+        <header className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900">
+            Component Index
+          </h1>
+          <p className="mt-2 text-gray-600">
+            This page lists all components exported from the codebase. Built
+            using TanStack Router for file-based routing and type-safe
+            navigation.
+          </p>
+        </header>
+        <div className="flex flex-wrap gap-3">
+          {Object.entries(componentRegister).map(([slug, component]) => {
+            return (
+              <div key={slug}>
+                <Link
+                  className="hover:bg-gray-400 transition-colors py-2 px-3 rounded-full bg-gray-300"
+                  to={"/" + slug}
+                >
+                  {slug}
+                </Link>
+              </div>
+            );
+          })}
+        </div>
+      </div>

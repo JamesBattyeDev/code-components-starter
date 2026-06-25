@@ -1,0 +1,44 @@
+import { createFileRoute, Link, redirect } from "@tanstack/react-router";
+import { lazy, Suspense, type ComponentType } from "react";
+import { ShadowRoot } from "#/shadow-dom.tsx";
+
+const modules = import.meta.glob([
+  "../../../components/src/*.tsx",
+  "!../../../components/src/*.webflow.tsx",
+]) as Record<string, () => Promise<{ default: ComponentType }>>;
+
+const entries = Object.entries(modules);
+const componentRegister: Record<string, ComponentType> = {};
+
+for (const [path, loader] of entries) {
+  const slug = path.split("/").pop()!.replace(/.tsx$/, "");
+  componentRegister[slug] = lazy(loader);
+}
+
+export const Route = createFileRoute("/$slug")({
+  component: () => {
+    const { slug } = Route.useParams();
+    const Component = componentRegister[slug];
+
+    if (!Component) {
+      redirect({
+        to: "/",
+      });
+    }
+
+    return (
+      <Suspense>
+        <div className="border-b border-blue-300 bg-white p-4">
+          <Link to="/" className="text-blue-600 hover:underline">
+            ← Back
+          </Link>
+        </div>
+        <div className="p-10">
+          <ShadowRoot>
+            <Component></Component>
+          </ShadowRoot>
+        </div>
+      </Suspense>
+    );
+  },
+});

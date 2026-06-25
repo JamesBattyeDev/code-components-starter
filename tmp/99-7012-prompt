@@ -1,0 +1,76 @@
+<Context>
+You receive a selection in neovim that you need to replace with new code.
+The selection's contents may contain notes, incorporate the notes every time if there are some.
+consider the context of the selection and what you are suppose to be implementing
+<SELECTION_LOCATION>
+range(point(29,1),point(33,18))
+</SELECTION_LOCATION>
+<SELECTION_CONTENT>
+      <Suspense>
+        <div className="p-10">
+          <Component></Component>
+        </div>
+      </Suspense>
+</SELECTION_CONTENT>
+<SURROUNDING_CONTEXT>
+import { createFileRoute, redirect } from "@tanstack/react-router";
+import { lazy, Suspense, type ComponentType } from "react";
+
+const modules = import.meta.glob([
+  "../../../components/src/*.tsx",
+  "!../../../components/src/*.webflow.tsx",
+]) as Record<string, () => Promise<{ default: ComponentType }>>;
+
+const entries = Object.entries(modules);
+const componentRegister: Record<string, ComponentType> = {};
+
+for (const [path, loader] of entries) {
+  const slug = path.split("/").pop()!.replace(/.tsx$/, "");
+  componentRegister[slug] = lazy(loader);
+}
+
+export const Route = createFileRoute("/$slug")({
+  component: () => {
+    const { slug } = Route.useParams();
+    const Component = componentRegister[slug];
+
+    if (!Component) {
+      redirect({
+        to: "/",
+      });
+    }
+
+    return (
+      <Suspense>
+        <div className="p-10">
+          <Component></Component>
+        </div>
+      </Suspense>
+    );
+  },
+});
+</SURROUNDING_CONTEXT>
+
+</Context>
+<Prompt>
+Add a back button that persists at the top, going to the index "/" page. Also wrap the component in a shadow dom element
+</Prompt>
+
+<Location><File>/Users/jamesbattye/Code/client/freelance/code-components-starter/apps/preview/src/routes/$slug.tsx</File><Function>range(point(29,1),point(33,18))</Function></Location>
+<FunctionText>      <Suspense>
+        <div className="p-10">
+          <Component></Component>
+        </div>
+      </Suspense></FunctionText>
+<TEMP_FILE>./tmp/99-7012</TEMP_FILE>
+<MustObey>
+NEVER alter any file other than TEMP_FILE.
+never provide the requested changes as conversational output. Return only the code.
+ONLY provide requested changes by writing the change to TEMP_FILE
+
+never attempt to read TEMP_FILE.
+It is purely for output.
+Previous contents, which may not exist, can be written over without worry
+After writing TEMP_FILE once you should be done.  Be done and end the session.
+
+</MustObey>

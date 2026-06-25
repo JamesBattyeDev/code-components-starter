@@ -1,0 +1,12 @@
+      <Suspense>
+        <div className="sticky top-0 z-10 border-b bg-white p-4">
+          <Link to="/" className="text-blue-600 hover:underline">
+            ← Back
+          </Link>
+        </div>
+        <div className="p-10">
+          <ShadowRoot>
+            <Component></Component>
+          </ShadowRoot>
+        </div>
+      </Suspense>
