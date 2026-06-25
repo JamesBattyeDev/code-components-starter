@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import css from "./styles.css?inline";
+import css from "../styles.css?inline";
 
 // One constructable stylesheet shared by every ShadowRoot instance. It holds the
 // compiled Tailwind/global CSS so class-based components (e.g. Button) render
